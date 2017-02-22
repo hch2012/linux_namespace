@@ -22,7 +22,8 @@ int main(int argc, char const *argv[])
 	void* stack;
 	stack=malloc(STACK_SIZE);
 	printf("主进程开始\n");
-	int pid=clone(child_main,stack+STACK_SIZE,CLONE_NEWUTS | SIGCHLD,NULL);
+	int pid=clone(child_main,stack+STACK_SIZE,SIGCHLD,NULL);
+	printf("%d\n",pid);
 	waitpid(pid,NULL,0);
 	return 0;
 }
