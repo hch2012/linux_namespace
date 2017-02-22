@@ -13,6 +13,7 @@ char* const child_args[]={"/bin/bash",NULL};
 
 int child_main(void* args){
 	printf("子进程开始\n");
+	sethostname("test",4);
 	execv(child_args[0],child_args);
 	printf("子进程结束\n");
 	return 1;
@@ -23,7 +24,7 @@ int main(int argc, char const *argv[])
 	void* stack;
 	stack=malloc(STACK_SIZE);
 	printf("主进程开始\n");
-	int pid=clone(child_main,stack+STACK_SIZE,SIGCHLD,NULL);
+	int pid=clone(child_main,stack+STACK_SIZE,CLONE_NEWUTS | SIGCHLD,NULL);
 	printf("%d\n",pid);
 	waitpid(pid,NULL,0);
 	printf("退出\n");
