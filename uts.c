@@ -1,4 +1,4 @@
-#include <sys/type.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include <signal.h>
