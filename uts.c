@@ -8,10 +8,11 @@
 
 #define STACK_SIZE (1024*1024)
 
+char* const child_args[]={"/bin/bash",NULL};
 
 int child_main(void* args){
 	printf("子进程开始\n");
-	execv("/bin/bash",{"/bin/bash",NULL});
+	execv(child_args[0],child_args);
 	return 1;
 }
 
